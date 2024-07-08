@@ -1,0 +1,55 @@
+`timescale 1ns / 1ps
+
+module design_calculator(a,b,choice,result);
+input [3:0]a,b;
+input [2:0]choice;
+output reg [7:0]result;
+parameter SUM=3'b000,SUB=3'b001,MUL=3'b010,DIV=3'b011,REM=3'b100,EXP=3'b101,ABS=3'b110;
+
+always @(a or b or choice)
+begin
+    case(choice)
+    SUM:
+        begin
+            result=a+b;
+        end
+
+    SUB:
+        begin
+            result=a-b;
+        end
+
+    MUL:
+        begin
+            result=a*b;
+        end
+
+    DIV:
+        begin
+            result=a/b;
+        end
+
+    REM:
+        begin
+            result=a%b;
+        end
+
+    EXP:
+        begin
+            result=a^b;
+        end
+
+    ABS:
+        begin
+            result=~(a)+1;
+        end
+
+    default:
+        begin
+            result=15'b0;
+        end
+
+    endcase
+end
+
+endmodule
